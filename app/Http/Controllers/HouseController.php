@@ -16,6 +16,11 @@ class HouseController extends Controller
             ->filterRange($request)
             ->get();
 
+        /**
+         * обернул в data, чтобы в условном будущем
+         * при добавлении пагинации структура осталась
+         * прежней и не пришлось переписывать фронтенд
+         */
         return response(['data' => $houses]);
     }
 }

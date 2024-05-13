@@ -38,6 +38,11 @@ class House extends Model
 
     public function scopeFilterExact(Builder $query, Request $request)
     {
+        /**
+         * На проде я бы вынес параметры в БД,
+         * чтобы можно было их редактировать
+         * из админ-панели. И закешировал бы.
+         */
         $params = ['bedrooms', 'bathrooms', 'storeys', 'garages'];
 
         foreach ($params as $param) {
