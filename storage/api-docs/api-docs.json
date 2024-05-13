@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API docs",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/houses": {
+            "get": {
+                "tags": [
+                    "House"
+                ],
+                "summary": "INDEX - filtered list of houses",
+                "description": "",
+                "operationId": "faa7b0dd9f27099caf224fb05cf6031f",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Пример: xav",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "minprice",
+                        "in": "query",
+                        "description": "Пример: 300000",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "maxprice",
+                        "in": "query",
+                        "description": "Пример: 500000",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bedrooms",
+                        "in": "query",
+                        "description": "Пример: 4",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "bathrooms",
+                        "in": "query",
+                        "description": "Пример: 3",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "storeys",
+                        "in": "query",
+                        "description": "Пример: 2",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "garages",
+                        "in": "query",
+                        "description": "Пример: 2",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer",
+                                                        "example": "1"
+                                                    },
+                                                    "name": {
+                                                        "type": "string",
+                                                        "example": "The Victoria"
+                                                    },
+                                                    "price": {
+                                                        "type": "integer",
+                                                        "example": "374662"
+                                                    },
+                                                    "bedrooms": {
+                                                        "type": "integer",
+                                                        "example": "4"
+                                                    },
+                                                    "bathrooms": {
+                                                        "type": "integer",
+                                                        "example": "2"
+                                                    },
+                                                    "storeys": {
+                                                        "type": "integer",
+                                                        "example": "2"
+                                                    },
+                                                    "garages": {
+                                                        "type": "integer",
+                                                        "example": "2"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
