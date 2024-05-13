@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\HouseResource;
 use App\Models\House;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -69,11 +70,13 @@ class HouseController extends Controller
             ->filterRange($request)
             ->get();
 
+        $data = HouseResource::collection($houses);
+
         /**
          * обернул в data, чтобы в условном будущем
          * при добавлении пагинации структура осталась
          * прежней и не пришлось переписывать фронтенд
          */
-        return response(['data' => $houses]);
+        return response(compact('data'));
     }
 }
