@@ -13,6 +13,7 @@ class HouseController extends Controller
         $houses = House::query()
             ->filterName($request)
             ->filterExact($request)
+            ->filterRange($request)
             ->get();
 
         return response(['data' => $houses]);

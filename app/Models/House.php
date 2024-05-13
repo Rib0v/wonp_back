@@ -46,4 +46,14 @@ class House extends Model
             }
         }
     }
+
+    public function scopeFilterRange(Builder $query, Request $request)
+    {
+        if ($request->has("minprice")) {
+            $query->where('price', '>=', $request->query("minprice"));
+        }
+        if ($request->has("maxprice")) {
+            $query->where('price', '<=', $request->query("maxprice"));
+        }
+    }
 }
