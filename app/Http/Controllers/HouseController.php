@@ -10,7 +10,11 @@ class HouseController extends Controller
 {
     public function index(Request $request): Response
     {
-        $houses = House::query()->filterName($request)->get();
+        $houses = House::query()
+            ->filterName($request)
+            ->filterExact($request)
+            ->get();
+
         return response(['data' => $houses]);
     }
 }

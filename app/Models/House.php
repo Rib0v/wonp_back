@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
 
 class House extends Model
 {
@@ -19,7 +20,7 @@ class House extends Model
         'garages',
     ];
 
-    public function scopeFilterName(Builder $query, $request)
+    public function scopeFilterName(Builder $query, Request $request)
     {
         if ($request->has("name")) {
 
@@ -32,6 +33,17 @@ class House extends Model
             $caseInsensitiveOperator = config('database.default') === 'pgsql' ? 'ILIKE' : 'LIKE';
 
             $query->where('name', $caseInsensitiveOperator, "%{$request->query("name")}%");
+        }
+    }
+
+    public function scopeFilterExact(Builder $query, Request $request)
+    {
+        $params = ['bedrooms', 'bathrooms', 'storeys', 'garages'];
+
+        foreach ($params as $param) {
+            if ($request->has("$param")) {
+                $query->where($param, $request->query("$param"));
+            }
         }
     }
 }
