@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\HouseResource;
-use App\Models\House;
+use App\Services\HouseService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -62,15 +61,11 @@ class HouseController extends Controller
      *   )
      * )
      */
-    public function index(Request $request): Response
+    public function index(Request $request, HouseService $service): Response
     {
-        $houses = House::query()
-            ->filterName($request)
-            ->filterExact($request)
-            ->filterRange($request)
-            ->get();
-
-        $data = HouseResource::collection($houses);
+        $data = empty($request->query()) ?
+            $service->getCachedData()
+            : $service->getFilteredData($request);
 
         /**
          * обернул в data, чтобы в условном будущем
